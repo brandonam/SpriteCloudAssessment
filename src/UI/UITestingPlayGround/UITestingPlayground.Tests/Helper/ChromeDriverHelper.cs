@@ -1,7 +1,7 @@
 using System.IO;
 using System.Linq;
 
-namespace UITestingPlayground.Tests;
+namespace UITestingPlayground.Tests.Helper;
 
 public static class ChromeDriverHelper
 {
