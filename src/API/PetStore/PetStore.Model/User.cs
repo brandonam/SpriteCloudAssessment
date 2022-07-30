@@ -1,38 +1,37 @@
 ﻿using Flurl.Http;
 using Newtonsoft.Json;
+using System.Net;
 
 namespace PetStore.Model;
 
-public class User
-{
-    private readonly IFlurlClient _flurlClient;
+//public class User
+//{
+//    private readonly IFlurlClient _flurlClient;
 
-    public User(HttpClient httpClient)
-    {
-        _flurlClient = new FlurlClient(httpClient);
-    }
+//    public User(HttpClient httpClient)
+//    {
+//        _flurlClient = new FlurlClient(httpClient);
+//    }
 
-    public async Task<ApiResponse> Create(UserModel user)
-    {
-        try
-        {
-            var request = _flurlClient.Request();
-            var response = await request
-                .WithHeader("Content-Type", "application/json")
-                .PostJsonAsync(user)
-                .ConfigureAwait(false);
-            var result = await response
-                .GetJsonAsync<ApiResponse>()
-                .ConfigureAwait(false);
-            return result;
-        }
-        catch (FlurlHttpException e)
-        {
-            var internalServerResponseError = await e.GetResponseJsonAsync<ApiResponse>();
-            return internalServerResponseError;
-        }
-    }
-}
+//    public async Task<(HttpStatusCode HttpStatusCode, ApiResponse ApiResponse)> Create(UserModel user)
+//    {
+//        try
+//        {
+//            var request = _flurlClient.Request();
+//            var response = await request
+//                .WithHeader("Content-Type", "application/json")
+//                .PostJsonAsync(user);
+//            var result = await response
+//                .GetJsonAsync<ApiResponse>();
+//            return (Http);
+//        }
+//        catch (FlurlHttpException e)
+//        {
+//            var internalServerResponseError = await e.GetResponseJsonAsync<ApiResponse>();
+//            return internalServerResponseError;
+//        }
+//    }
+//}
 
 public class UserModel
 {

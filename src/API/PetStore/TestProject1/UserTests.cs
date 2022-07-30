@@ -1,8 +1,7 @@
-using Flurl.Http.Testing;
-using PetStore.Model;
-using PetStore.Tests.Helper;
-using Xunit;
 using FluentAssertions;
+using Flurl.Http;
+using Moq;
+using PetStore.Model;
 
 namespace PetStore.Tests
 {
@@ -11,28 +10,138 @@ namespace PetStore.Tests
         private const string _userEndpoint = "https://petstore.swagger.io/v2/user";
 
         [Theory]
-        [MemberData(nameof(NewUserRequestTestData), MemberType = typeof(UserTests))]
-        public async Task Given_a_new_user_When_registring_Then_creation_successfulAsync(Create expected)
+        [MemberData(nameof(ExistingUserTestData), MemberType = typeof(UserTests))]
+        public async Task Given_existing_user_When_registering_the_same_user_details_Should_return_existing_user_Id(ExistingUser expected)
         {
             // Arrange
-            using var stubbedHttpClient = new HttpTest();
-            stubbedHttpClient.RespondWithJson(expected.ApiResponse, 200);
-            var mockedHttpClient = HttpClientMock.Create(_userEndpoint, expected.ApiResponse);
+            var request = new FlurlClient(_userEndpoint).Request();
+            request.WithHeader("Content-Type", "application/json");
 
             // Act
-            var userRequest = new User(mockedHttpClient);
-            var response = await userRequest.Create(expected.NewUserRequest);
+            var response = await request.PostJsonAsync(expected.User);
+            var result = await response.GetJsonAsync<ApiResponse>();
 
             // Assert
-            response.Should().BeEquivalentTo(expected.ApiResponse);
-            stubbedHttpClient.ShouldHaveCalled(_userEndpoint)
-              .WithVerb(HttpMethod.Post)
-              .WithContentType("application/json");
+            result.Should().BeEquivalentTo(expected.ApiResponse);
         }
 
-        public class Create
+        [Theory]
+        [MemberData(nameof(ExistingUserTestData), MemberType = typeof(UserTests))]
+        public async Task Given_existing_user_When_registering_new_user_with_same_user_Id_details_Should_return_existing_user_id(ExistingUser expected)
         {
-            public UserModel NewUserRequest = new UserModel
+            // Arrange
+            var request = new FlurlClient(_userEndpoint).Request();
+            request.WithHeader("Content-Type", "application/json");
+            // Mock user expected Id and all other properties randomized
+            var mockUser = Mock.Of<UserModel>();
+            mockUser.Id = expected.User.Id;
+            mockUser.Email = It.IsAny<string>();
+            mockUser.FirstName = It.IsAny<string>();
+            mockUser.LastName = It.IsAny<string>();
+            mockUser.Password = It.IsAny<string>();
+            mockUser.Phone = It.IsAny<string>();
+            mockUser.UserStatus = It.IsAny<int>();
+
+            // Act
+            var response = await request.PostJsonAsync(expected.User);
+            var result = await response.GetJsonAsync<ApiResponse>();
+
+            // Assert
+            result.Should().BeEquivalentTo(expected.ApiResponse);
+        }
+
+        [Theory]
+        [MemberData(nameof(ExistingUserTestData), MemberType = typeof(UserTests))]
+        public async Task Given_existing_user_When_registering_new_user_with_same_user_Id_details_Should_return_200(ExistingUser expected)
+        {
+            // Arrange
+            var request = new FlurlClient(_userEndpoint).Request();
+            request.WithHeader("Content-Type", "application/json");
+            // Flurl will only allow 200 HttpStatusCodes to be returned without explicitly throwing an exception
+            request.AllowAnyHttpStatus();
+
+            // Act
+            var response = await request.PostJsonAsync(expected.User);
+            var result = response.StatusCode;
+
+            // Assert
+            result.Should().Be(200);
+        }
+
+        [Fact]
+        public async Task Given_invalid_input_When_registering_new_user_Should_return_405_response_message_no_data()
+        {
+            // Arrange
+            var request = new FlurlClient(_userEndpoint).Request();
+            request.WithHeader("Content-Type", "application/json");
+            // allow 405 status to prevent exception throwing
+            request.AllowHttpStatus("405");
+            // mock request with no user json object
+            UserModel? mockUser = null;
+            ApiResponse expectedApiResponse = new ApiResponse
+            {
+                Code = 405,
+                Message = "no data",
+                Type = "unknown"
+            };
+
+            // Act
+            var response = await request.PostJsonAsync(mockUser);
+            var result = await response.GetJsonAsync<ApiResponse>();
+
+            // Assert
+            result.Should().BeEquivalentTo(expectedApiResponse);
+        }
+
+        [Theory]
+        [MemberData(nameof(NewUserTestData), MemberType = typeof(UserTests))]
+        public async Task Given_new_user_When_registering_details_without_id_property_Should_return_random_user_Id(CreateNewUser expected)
+        {
+            // Arrange
+            var request = new FlurlClient(_userEndpoint).Request();
+            request.WithHeader("Content-Type", "application/json");
+            // it wont be know what the user Id will be until the response is recieved, ignore the message property
+            ApiResponse expectedApiResponse = new ApiResponse
+            {
+                Code = 200,
+                Type = "unknown"
+            };
+
+            // Act
+            var response = await request.PostJsonAsync(expected.User);
+            var result = await response.GetJsonAsync<ApiResponse>();
+
+            // Assert
+            result.Should().BeEquivalentTo(expectedApiResponse,
+              assertionOptions => assertionOptions.Excluding(x => x.Message));
+        }
+
+        [Fact]
+        public async Task Given_new_user_When_registering_details_with_Id_0_Should_return_new_user_Id()
+        {
+            // Arrange
+            var request = new FlurlClient(_userEndpoint).Request();
+            request.WithHeader("Content-Type", "application/json");
+            // it wont be know what the user Id will be until the response is recieved, ignore the message property
+            ApiResponse expectedApiResponse = new ApiResponse
+            {
+                Code = 200,
+                Type = "unknown"
+            };
+            var mockUser = new UserModel { Id = 0 };
+
+            // Act
+            var response = await request.PostJsonAsync(mockUser);
+            var result = await response.GetJsonAsync<ApiResponse>();
+
+            // Assert
+            result.Should().BeEquivalentTo(expectedApiResponse,
+              assertionOptions => assertionOptions.Excluding(x => x.Message));
+        }
+
+        public class ExistingUser
+        {
+            public UserModel User = new UserModel
             {
 
                 Id = 4038946,
@@ -48,15 +157,47 @@ namespace PetStore.Tests
             public ApiResponse ApiResponse = new ApiResponse
             {
                 Code = 200,
-                Message = "",
-                Type = ""
+                Message = "4038946",
+                Type = "unknown"
             };
+
+            public int HttpStatusCode = 200;
         }
 
-        public static IEnumerable<object[]> NewUserRequestTestData =>
+        public static IEnumerable<object[]> ExistingUserTestData =>
           new List<object[]>
           {
-            new object[] { new Create() }
+            new object[] { new ExistingUser() }
           };
+
+        public class CreateNewUser
+        {
+            public UserModel User = new UserModel
+            {
+                Username = "ut laboris eiusmod",
+                FirstName = "in esse ea",
+                LastName = "",
+                Email = "exercitation mollit",
+                Password = "minim elit consequat reprehenderit",
+                Phone = "sed aute sint est",
+                UserStatus = 34493482
+            };
+
+            public ApiResponse ApiResponse = new ApiResponse
+            {
+                Code = 200,
+                Message = It.IsAny<string>(),
+                Type = "unknown"
+            };
+
+            public int HttpStatusCode = 200;
+        }
+
+        public static IEnumerable<object[]> NewUserTestData =>
+          new List<object[]>
+          {
+            new object[] { new CreateNewUser() }
+          };
+
     }
 }
