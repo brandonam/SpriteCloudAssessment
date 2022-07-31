@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petstore.Tests", "Petstore.Tests\Petstore.Tests.csproj", "{F06DED1F-526E-4856-A46C-59FC4C96198B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetstoreApi.Tests", "PetstoreApi.Tests\PetstoreApi.Tests.csproj", "{F06DED1F-526E-4856-A46C-59FC4C96198B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petstore.Model", "Petstore.Model\Petstore.Model.csproj", "{F56A4CD9-BDBE-4204-AFD4-9982E4E9A05C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetstoreApi.Model", "PetstoreApi.Model\PetstoreApi.Model.csproj", "{F56A4CD9-BDBE-4204-AFD4-9982E4E9A05C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
