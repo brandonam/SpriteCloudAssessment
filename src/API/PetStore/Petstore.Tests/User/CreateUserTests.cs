@@ -1,3 +1,4 @@
+using Bogus;
 using FluentAssertions;
 using Flurl.Http;
 using Moq;
@@ -32,15 +33,6 @@ namespace Petstore.Tests.User
             // Arrange
             var request = new FlurlClient(_userEndpoint).Request();
             request.WithHeader("Content-Type", "application/json");
-            // Mock user expected Id and all other properties randomized
-            var mockUser = Mock.Of<UserModel>();
-            mockUser.Id = expected.User.Id;
-            mockUser.Email = It.IsAny<string>();
-            mockUser.FirstName = It.IsAny<string>();
-            mockUser.LastName = It.IsAny<string>();
-            mockUser.Password = It.IsAny<string>();
-            mockUser.Phone = It.IsAny<string>();
-            mockUser.UserStatus = It.IsAny<int>();
 
             // Act
             var response = await request.PostJsonAsync(expected.User);
@@ -68,31 +60,6 @@ namespace Petstore.Tests.User
             result.Should().Be(200);
         }
 
-        [Fact]
-        public async Task Given_invalid_input_When_registering_new_user_Should_return_405_response_message_no_data()
-        {
-            // Arrange
-            var request = new FlurlClient(_userEndpoint).Request();
-            request.WithHeader("Content-Type", "application/json");
-            // allow 405 status to prevent exception throwing
-            request.AllowHttpStatus("405");
-            // mock request with no user json object
-            UserModel? mockUser = null;
-            ApiResponse expectedApiResponse = new ApiResponse
-            {
-                Code = 405,
-                Message = "no data",
-                Type = "unknown"
-            };
-
-            // Act
-            var response = await request.PostJsonAsync(mockUser);
-            var result = await response.GetJsonAsync<ApiResponse>();
-
-            // Assert
-            result.Should().BeEquivalentTo(expectedApiResponse);
-        }
-
         [Theory]
         [MemberData(nameof(NewUserTestData), MemberType = typeof(CreateUserTests))]
         public async Task Given_new_user_When_registering_details_without_id_property_Should_return_random_user_Id(CreateNewUser expected)
@@ -116,11 +83,36 @@ namespace Petstore.Tests.User
               assertionOptions => assertionOptions.Excluding(x => x.Message));
         }
 
+        [Fact]
+        public async Task Given_invalid_input_When_registering_new_user_Should_return_405_response_message_no_data()
+        {
+            // Arrange
+            var request = new FlurlClient(_userEndpoint).Request();
+            request.WithHeader("Content-Type", "application/json");
+            // allow 405 status to prevent exception throwing
+            request.AllowHttpStatus("405");
+            // mock request with no user json object
+            Model.UserModel? mockUser = null;
+            ApiResponse expectedApiResponse = new ApiResponse
+            {
+                Code = 405,
+                Message = "no data",
+                Type = "unknown"
+            };
+
+            // Act
+            var response = await request.PostJsonAsync(mockUser);
+            var result = await response.GetJsonAsync<ApiResponse>();
+
+            // Assert
+            result.Should().BeEquivalentTo(expectedApiResponse);
+        }
+
+        #region Testdata
         public class ExistingUser
         {
-            public UserModel User = new UserModel
+            public Model.UserModel User = new Model.UserModel
             {
-
                 Id = 4038946,
                 Username = "ut laboris eiusmod",
                 FirstName = "in esse ea",
@@ -137,16 +129,16 @@ namespace Petstore.Tests.User
                 Message = "4038946",
                 Type = "unknown"
             };
-
-            public int HttpStatusCode = 200;
         }
 
         public static IEnumerable<object[]> ExistingUserTestData =>
           new List<object[]>
           {
+            // use default values
             new object[] { new ExistingUser() },
+            // use inline created values
             new object[] { new ExistingUser {
-                    User = new UserModel { Id = 1 },
+                    User = new Model.UserModel { Id = 1 },
                     ApiResponse = new ApiResponse
                     {
                         Code = 200,
@@ -159,7 +151,7 @@ namespace Petstore.Tests.User
 
         public class CreateNewUser
         {
-            public UserModel User = new UserModel
+            public Model.UserModel User = new Model.UserModel
             {
                 Username = "ut laboris eiusmod",
                 FirstName = "in esse ea",
@@ -176,17 +168,17 @@ namespace Petstore.Tests.User
                 Message = It.IsAny<string>(),
                 Type = "unknown"
             };
-
-            public int HttpStatusCode = 200;
         }
 
         public static IEnumerable<object[]> NewUserTestData =>
           new List<object[]>
           {
             new object[] { new CreateNewUser() },
-            new object[] { new CreateNewUser { User = new UserModel { Username = "BrandonTest01", Password = "Test01" } } },
-            new object[] { new CreateNewUser { User = new UserModel { Username = "BrandonTest02", Password = "Test02" } } }
+            new object[] { new CreateNewUser { User = new Model.UserModel { Username = "BrandonTest01", Password = "Test01" } } },
+            new object[] { new CreateNewUser { User = new Model.UserModel { Username = "BrandonTest02", Password = "Test02" } } },
+            new object[] { new CreateNewUser { User = new Model.UserModel { Username = "BrandonTest03", Password = "Test03" } } },
+            new object[] { new CreateNewUser { User = new Model.UserModel { Username = "BrandonTest04", Password = "Test04" } } }
           };
-
+        #endregion
     }
 }
