@@ -149,9 +149,9 @@ namespace PetStore.Tests.User
                     User = new UserModel { Id = 1 },
                     ApiResponse = new ApiResponse
                     {
-                         Code = 200,
-                        Message = "4038946",
-                            Type = "unknown"
+                        Code = 200,
+                        Message = "1",
+                        Type = "unknown"
                     }
                 }
             }
