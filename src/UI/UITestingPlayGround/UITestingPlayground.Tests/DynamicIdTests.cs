@@ -25,6 +25,9 @@ public class DynamicIdTests : IDisposable
         _testOutputHelper = testOutputHelper;
         ChromeOptions options = new ChromeOptions();
         options.AddArgument("--remote-debugging-port=36189");
+        options.AddArgument("--headless"); //!!!should be enabled for Jenkins
+        options.AddArgument("--disable-dev-shm-usage"); //!!!should be enabled for Jenkins
+        options.AddArgument("--window-size=1920x1080"); //!!!should be enabled for Jenkins
         _driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, options);
     }
 
