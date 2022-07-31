@@ -32,7 +32,7 @@ namespace UITestingPlayground.Tests.Helper
 
         static TValue GetOrCreate<TKey, TValue>(IDictionary<TKey, TValue> dictionary, TKey key) where TValue : new()
         {
-            TValue result;
+            TValue? result;
 
             if (dictionary.TryGetValue(key, out result)) return result;
 

@@ -25,7 +25,9 @@ public class TextInputTests : IDisposable
     public TextInputTests(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
-        _driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory);
+        ChromeOptions options = new ChromeOptions();
+        options.AddArgument("--remote-debugging-port=36189");
+        _driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, options);
     }
 
     // Teardown
