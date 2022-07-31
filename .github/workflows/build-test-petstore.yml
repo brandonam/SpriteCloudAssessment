@@ -3,8 +3,7 @@ name: Petstore-API - Build/Test
 on: [push]
 
 jobs:
-  build:
-
+  petstore:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,3 +24,26 @@ jobs:
       - name: Test
         run: dotnet test --no-restore --verbosity normal
         working-directory: src/API/Petstore
+        
+  uitestingplayground:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+
+    steps:
+      - uses: browser-actions/setup-chrome@latest
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
+        working-directory: src/UI/UITestingPlayGround
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+        working-directory: src/UI/UITestingPlayGround
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal
+        working-directory: src/UI/UITestingPlayGround
