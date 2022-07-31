@@ -1,13 +1,13 @@
 ﻿using FluentAssertions;
 using Flurl.Http;
-using PetStore.Model;
+using Petstore.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetStore.Tests.User
+namespace Petstore.Tests.User
 {
     public class LoginUserTests
     {

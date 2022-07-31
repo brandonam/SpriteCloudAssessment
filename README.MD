@@ -21,7 +21,7 @@ In order to run the tests for the API Project please follow the instructions bel
 1. In your terminal of choice navigate the to the repositories root
 2. Navigate to the Petstore API folder or use the following command: 
     ```
-    cd .\src\API\PetStore\
+    cd .\src\API\Petstore\
     ```
 3. Run one of the following commands to build and run the tests
     ``` 

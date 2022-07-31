@@ -1,38 +1,10 @@
-﻿using Flurl.Http;
-using Newtonsoft.Json;
-using System.Net;
+﻿using Newtonsoft.Json;
 
-namespace PetStore.Model;
+namespace Petstore.Model;
 
-//public class User
-//{
-//    private readonly IFlurlClient _flurlClient;
-
-//    public User(HttpClient httpClient)
-//    {
-//        _flurlClient = new FlurlClient(httpClient);
-//    }
-
-//    public async Task<(HttpStatusCode HttpStatusCode, ApiResponse ApiResponse)> Create(UserModel user)
-//    {
-//        try
-//        {
-//            var request = _flurlClient.Request();
-//            var response = await request
-//                .WithHeader("Content-Type", "application/json")
-//                .PostJsonAsync(user);
-//            var result = await response
-//                .GetJsonAsync<ApiResponse>();
-//            return (Http);
-//        }
-//        catch (FlurlHttpException e)
-//        {
-//            var internalServerResponseError = await e.GetResponseJsonAsync<ApiResponse>();
-//            return internalServerResponseError;
-//        }
-//    }
-//}
-
+/// <summary>
+/// Represents the User Model
+/// </summary>
 public class UserModel
 {
     [JsonProperty("id")]

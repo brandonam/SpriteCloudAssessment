@@ -18,10 +18,10 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
         run: dotnet restore
-        working-directory: src/API/PetStore
+        working-directory: src/API/Petstore
       - name: Build
         run: dotnet build --configuration Release --no-restore
-        working-directory: src/API/PetStore
+        working-directory: src/API/Petstore
       - name: Test
         run: dotnet test --no-restore --verbosity normal
-        working-directory: src/API/PetStore
+        working-directory: src/API/Petstore

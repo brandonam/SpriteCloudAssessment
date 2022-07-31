@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
-namespace PetStore.Model
+namespace Petstore.Model;
+
+/// <summary>
+/// Represents the APIResponse Model
+/// </summary>
+public class ApiResponse
 {
-
-    public class ApiResponse
-    {
-        public int Code { get; set; }
-        public string? Type { get; set; }
-        public string? Message { get; set; }
-    }
-
+    [JsonProperty("code")]
+    public int Code { get; set; }
+    [JsonProperty("message")]
+    public string? Message { get; set; }
+    [JsonProperty("type")]
+    public string? Type { get; set; }
 }

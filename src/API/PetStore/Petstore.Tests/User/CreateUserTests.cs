@@ -1,9 +1,9 @@
 using FluentAssertions;
 using Flurl.Http;
 using Moq;
-using PetStore.Model;
+using Petstore.Model;
 
-namespace PetStore.Tests.User
+namespace Petstore.Tests.User
 {
     public class CreateUserTests
     {
