@@ -1,16 +1,14 @@
-using System;
-using System.IO;
 using Flurl.Http;
 using Flurl.Http.Testing;
 using Moq;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
+using UITestingPlayground.Tests.Helper;
+using UITestingPlayGround.Model.Pages;
+using UITestingPlayGround.Model.Shared;
 using Xunit;
 using Xunit.Abstractions;
-using UITestingPlayGround.Model.Pages;
-using Flurl;
-using UITestingPlayground.Tests.Helper;
-using OpenQA.Selenium.Support.UI;
 
 namespace UITestingPlayground.Tests;
 
@@ -18,20 +16,20 @@ namespace UITestingPlayground.Tests;
 public class DynamicIdTests : IDisposable
 {
     private readonly ITestOutputHelper _testOutputHelper;
-    private readonly ChromeDriver _chromeDriver;
+    private readonly ChromeDriver _driver;
     private const string RequestUrl = "http://www.uitestingplayground.com/dynamicid";
 
     // Setup
     public DynamicIdTests(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
-        _chromeDriver = new ChromeDriver(System.AppDomain.CurrentDomain.BaseDirectory);
+        _driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory);
     }
 
     // Teardown
     public void Dispose()
     {
-        _chromeDriver.Quit();
+        _driver.Quit();
     }
 
     [Fact, TestPriority(1)]
@@ -53,12 +51,12 @@ public class DynamicIdTests : IDisposable
     {
         // Arrange
 
-        DynamicIdButton uiTapHelper = new DynamicIdButton(_chromeDriver);
+        ElementActions elementActions = new ElementActions(_driver);
         // navigate to the page
-        _chromeDriver.Navigate().GoToUrl(RequestUrl);
+        _driver.Navigate().GoToUrl(RequestUrl);
 
         // Act
-        var dynamicButton = uiTapHelper.GetDynamicIdButtonElement();
+        var dynamicButton = elementActions.GetElement(DynamicIdButton.DynamicIdButtonElement);
 
         // Assert
         Assert.NotNull(dynamicButton);
@@ -69,13 +67,14 @@ public class DynamicIdTests : IDisposable
     {
         // Arrange
 
-        DynamicIdButton uiTapHelper = new DynamicIdButton(_chromeDriver);
+        ElementActions elementActions = new ElementActions(_driver);
         // navigate to the page
-        _chromeDriver.Navigate().GoToUrl(RequestUrl);
-        new WebDriverWait(_chromeDriver, TimeSpan.FromSeconds(10)).Until(driver => driver.FindElement(uiTapHelper.DynamicButton));
+        _driver.Navigate().GoToUrl(RequestUrl);
+        // wait at least 10 seconds for the website to render
+        new WebDriverWait(_driver, TimeSpan.FromSeconds(10)).Until(driver => driver.FindElement(DynamicIdButton.DynamicIdButtonElement));
 
         // Act
-        var dynamicButtonClicked = uiTapHelper.DynamicIdButtonClicked();
+        var dynamicButtonClicked = elementActions.ButtonClick(DynamicIdButton.DynamicIdButtonElement);
 
         // Assert
         Assert.True(dynamicButtonClicked);
