@@ -3,14 +3,14 @@ using Flurl.Http;
 using Moq;
 using PetStore.Model;
 
-namespace PetStore.Tests
+namespace PetStore.Tests.User
 {
-    public class UserTests
+    public class CreateUserTests
     {
         private const string _userEndpoint = "https://petstore.swagger.io/v2/user";
 
         [Theory]
-        [MemberData(nameof(ExistingUserTestData), MemberType = typeof(UserTests))]
+        [MemberData(nameof(ExistingUserTestData), MemberType = typeof(CreateUserTests))]
         public async Task Given_existing_user_When_registering_the_same_user_details_Should_return_existing_user_Id(ExistingUser expected)
         {
             // Arrange
@@ -26,7 +26,7 @@ namespace PetStore.Tests
         }
 
         [Theory]
-        [MemberData(nameof(ExistingUserTestData), MemberType = typeof(UserTests))]
+        [MemberData(nameof(ExistingUserTestData), MemberType = typeof(CreateUserTests))]
         public async Task Given_existing_user_When_registering_new_user_with_same_user_Id_details_Should_return_existing_user_id(ExistingUser expected)
         {
             // Arrange
@@ -51,7 +51,7 @@ namespace PetStore.Tests
         }
 
         [Theory]
-        [MemberData(nameof(ExistingUserTestData), MemberType = typeof(UserTests))]
+        [MemberData(nameof(ExistingUserTestData), MemberType = typeof(CreateUserTests))]
         public async Task Given_existing_user_When_registering_new_user_with_same_user_Id_details_Should_return_200(ExistingUser expected)
         {
             // Arrange
@@ -94,7 +94,7 @@ namespace PetStore.Tests
         }
 
         [Theory]
-        [MemberData(nameof(NewUserTestData), MemberType = typeof(UserTests))]
+        [MemberData(nameof(NewUserTestData), MemberType = typeof(CreateUserTests))]
         public async Task Given_new_user_When_registering_details_without_id_property_Should_return_random_user_Id(CreateNewUser expected)
         {
             // Arrange
@@ -109,29 +109,6 @@ namespace PetStore.Tests
 
             // Act
             var response = await request.PostJsonAsync(expected.User);
-            var result = await response.GetJsonAsync<ApiResponse>();
-
-            // Assert
-            result.Should().BeEquivalentTo(expectedApiResponse,
-              assertionOptions => assertionOptions.Excluding(x => x.Message));
-        }
-
-        [Fact]
-        public async Task Given_new_user_When_registering_details_with_Id_0_Should_return_new_user_Id()
-        {
-            // Arrange
-            var request = new FlurlClient(_userEndpoint).Request();
-            request.WithHeader("Content-Type", "application/json");
-            // it wont be know what the user Id will be until the response is recieved, ignore the message property
-            ApiResponse expectedApiResponse = new ApiResponse
-            {
-                Code = 200,
-                Type = "unknown"
-            };
-            var mockUser = new UserModel { Id = 0 };
-
-            // Act
-            var response = await request.PostJsonAsync(mockUser);
             var result = await response.GetJsonAsync<ApiResponse>();
 
             // Assert
@@ -167,7 +144,17 @@ namespace PetStore.Tests
         public static IEnumerable<object[]> ExistingUserTestData =>
           new List<object[]>
           {
-            new object[] { new ExistingUser() }
+            new object[] { new ExistingUser() },
+            new object[] { new ExistingUser {
+                    User = new UserModel { Id = 1 },
+                    ApiResponse = new ApiResponse
+                    {
+                         Code = 200,
+                        Message = "4038946",
+                            Type = "unknown"
+                    }
+                }
+            }
           };
 
         public class CreateNewUser
@@ -196,7 +183,9 @@ namespace PetStore.Tests
         public static IEnumerable<object[]> NewUserTestData =>
           new List<object[]>
           {
-            new object[] { new CreateNewUser() }
+            new object[] { new CreateNewUser() },
+            new object[] { new CreateNewUser { User = new UserModel { Username = "BrandonTest01", Password = "Test01" } } },
+            new object[] { new CreateNewUser { User = new UserModel { Username = "BrandonTest02", Password = "Test02" } } }
           };
 
     }
