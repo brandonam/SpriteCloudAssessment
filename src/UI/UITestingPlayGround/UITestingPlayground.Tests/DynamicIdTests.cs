@@ -23,7 +23,10 @@ public class DynamicIdTests : IDisposable
     public DynamicIdTests(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
-        _driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory);
+        ChromeOptions options = new ChromeOptions();
+        options.AddArgument("headless");
+        options.AddArgument("--remote-debugging-port=36189");
+        _driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, options);
     }
 
     // Teardown
