@@ -1,4 +1,4 @@
-name: Petstore API Build and execute tests 
+name: Petstore-API - Build/Test 
 
 on: [push]
 
