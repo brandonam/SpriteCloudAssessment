@@ -39,7 +39,7 @@ In order to run the tests for the API Project please follow the instructions bel
 __Petstore API__
 
 In order to run the tests for the API Project please follow the instructions below:
-1. In your terminal of choice
+1. In your terminal of  choice
 
 ## Has a link to the results in Calliope.pro
 
