@@ -63,7 +63,7 @@ jobs:
         if: success() || failure()
         with:
           name: uitestingplayground-test-results
-          path: src/UI/UITestingPlayGround/UITestingPlayGround.Tests/TestResults/test-results.trx
+          path: src/UI/UITestingPlayGround/UITestingPlayground.Tests/TestResults/test-results.trx
       - uses: dorny/test-reporter@v1
         with:
           artifact: uitestingplayground-test-results
