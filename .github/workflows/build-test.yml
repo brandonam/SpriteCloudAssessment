@@ -29,6 +29,7 @@ jobs:
         uses: EndBug/add-and-commit@v9.0.1
         with:
           add: 'testresults/petstore-test-results.html -f'
+          new_branch: 'test-reports'
       - uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
@@ -62,8 +63,8 @@ jobs:
         if: always()
         uses: EndBug/add-and-commit@v9.0.1
         with:
-          pull: '--rebase --autostash ...'
           add: 'testresults/uitestingplayground-test-results.html -f'
+          new_branch: 'test-reports'
       - uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
