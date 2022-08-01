@@ -9,6 +9,9 @@ using UITestingPlayGround.Model.Pages;
 using UITestingPlayGround.Model.Shared;
 using Xunit;
 using Xunit.Abstractions;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
+using OpenQA.Selenium;
 
 namespace UITestingPlayground.Tests;
 
@@ -16,25 +19,26 @@ namespace UITestingPlayground.Tests;
 public class DynamicIdTests : IDisposable
 {
     private readonly ITestOutputHelper _testOutputHelper;
-    private readonly ChromeDriver _driver;
+    private IWebDriver _webDriver;
     private const string RequestUrl = "http://www.uitestingplayground.com/dynamicid";
 
     // Setup
     public DynamicIdTests(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
-        ChromeOptions options = new ChromeOptions();
-        options.AddArgument("--remote-debugging-port=36189");
-        options.AddArgument("--headless"); //!!!should be enabled for Jenkins
-        options.AddArgument("--disable-dev-shm-usage"); //!!!should be enabled for Jenkins
-        options.AddArgument("--window-size=1920x1080"); //!!!should be enabled for Jenkins
-        _driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, options);
+        //ChromeOptions options = new ChromeOptions();
+        //options.AddArgument("--headless");
+        //options.AddArgument("--no-sandbox");
+        //_webDriver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, options);
+        new DriverManager().SetUpDriver(new ChromeConfig());
+        _webDriver = new ChromeDriver();
     }
 
     // Teardown
     public void Dispose()
     {
-        _driver.Quit();
+        _webDriver.Quit();
+        _webDriver.Dispose();
     }
 
     [Fact, TestPriority(1)]
@@ -56,9 +60,9 @@ public class DynamicIdTests : IDisposable
     {
         // Arrange
 
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
 
         // Act
         var dynamicButton = elementActions.GetElement(DynamicIdButton.DynamicIdButtonElement);
@@ -72,11 +76,11 @@ public class DynamicIdTests : IDisposable
     {
         // Arrange
 
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
         // wait at least 10 seconds for the website to render
-        new WebDriverWait(_driver, TimeSpan.FromSeconds(10)).Until(driver => driver.FindElement(DynamicIdButton.DynamicIdButtonElement));
+        new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10)).Until(driver => driver.FindElement(DynamicIdButton.DynamicIdButtonElement));
 
         // Act
         var dynamicButtonClicked = elementActions.ButtonClick(DynamicIdButton.DynamicIdButtonElement);

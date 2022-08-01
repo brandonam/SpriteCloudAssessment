@@ -11,6 +11,8 @@ using UITestingPlayGround.Model.Shared;
 using UITestingPlayground.Tests.Helper;
 using OpenQA.Selenium.Support.UI;
 using FluentAssertions;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace UITestingPlayground.Tests;
 
@@ -18,25 +20,26 @@ namespace UITestingPlayground.Tests;
 public class TextInputTests : IDisposable
 {
     private readonly ITestOutputHelper _testOutputHelper;
-    private readonly ChromeDriver _driver;
+    private IWebDriver _webDriver;
     private const string RequestUrl = "http://www.uitestingplayground.com/textinput";
 
     // Setup
     public TextInputTests(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
-        ChromeOptions options = new ChromeOptions();
-        options.AddArgument("--remote-debugging-port=36189");
-        options.AddArgument("--headless"); //!!!should be enabled for Jenkins
-        options.AddArgument("--disable-dev-shm-usage"); //!!!should be enabled for Jenkins
-        options.AddArgument("--window-size=1920x1080"); //!!!should be enabled for Jenkins
-        _driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, options);
+        //ChromeOptions options = new ChromeOptions();
+        //options.AddArgument("--headless");
+        //options.AddArgument("--no-sandbox");
+        //_webDriver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, options);
+        new DriverManager().SetUpDriver(new ChromeConfig());
+        _webDriver = new ChromeDriver();
     }
 
     // Teardown
     public void Dispose()
     {
-        _driver.Quit();
+        _webDriver.Quit();
+        _webDriver.Dispose();
     }
 
     [Fact, TestPriority(1)]
@@ -58,9 +61,9 @@ public class TextInputTests : IDisposable
     public void Given_Text_Input_Exists_Should_Not_Return_Null()
     {
         // Arrange
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
 
         // Act
         var dynamicButton = elementActions.GetElement(TextInput.TextInputElement);
@@ -73,9 +76,9 @@ public class TextInputTests : IDisposable
     public void Given_Update_Button_Exists_Should_Not_Return_Null()
     {
         // Arrange
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
 
         // Act
         var dynamicButton = elementActions.GetElement(TextInput.UpdateButtonElement);
@@ -94,11 +97,11 @@ public class TextInputTests : IDisposable
     public void Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(string text)
     {
         // Arrange
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
         // wait at least 10 seconds for the website to render the required elements
-        WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+        WebDriverWait wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
         IWebElement textInputExists = wait.Until(driver => driver.FindElement(TextInput.TextInputElement));
         IWebElement updateButtonExists = wait.Until(driver => driver.FindElement(TextInput.UpdateButtonElement));
 
@@ -118,11 +121,11 @@ public class TextInputTests : IDisposable
     {
         // Arrange
         const string expectedButtonText = "Button That Should Change it's Name Based on Input Value";
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
         // wait at least 10 seconds for the website to render the required elements
-        WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+        WebDriverWait wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
         IWebElement textInputExists = wait.Until(driver => driver.FindElement(TextInput.TextInputElement));
         IWebElement updateButtonExists = wait.Until(driver => driver.FindElement(TextInput.UpdateButtonElement));
 
@@ -143,11 +146,11 @@ public class TextInputTests : IDisposable
         const string firstExpectedButtonText = "Button Change One";
         const string secondExpectedButtonText = "Button Change Two";
         const string finalExpectedButtonText = "Button Change Three";
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
         // wait at least 10 seconds for the website to render the required elements
-        WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+        WebDriverWait wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
         IWebElement textInputExists = wait.Until(driver => driver.FindElement(TextInput.TextInputElement));
         IWebElement updateButtonExists = wait.Until(driver => driver.FindElement(TextInput.UpdateButtonElement));
 

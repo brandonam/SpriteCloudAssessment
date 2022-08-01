@@ -12,6 +12,8 @@ using UITestingPlayground.Tests.Helper;
 using OpenQA.Selenium.Support.UI;
 using FluentAssertions;
 using System.Threading;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace UITestingPlayground.Tests;
 
@@ -19,7 +21,7 @@ namespace UITestingPlayground.Tests;
 public class SampleAppTests : IDisposable
 {
     private readonly ITestOutputHelper _testOutputHelper;
-    private readonly ChromeDriver _driver;
+    private IWebDriver _webDriver;
     private const string RequestUrl = "http://www.uitestingplayground.com/SampleApp";
     private int _maxWaitTime = 10;
 
@@ -27,18 +29,19 @@ public class SampleAppTests : IDisposable
     public SampleAppTests(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
-        ChromeOptions options = new ChromeOptions();
-        options.AddArgument("--remote-debugging-port=36189");
-        options.AddArgument("--headless"); //!!!should be enabled for Jenkins
-        options.AddArgument("--disable-dev-shm-usage"); //!!!should be enabled for Jenkins
-        options.AddArgument("--window-size=1920x1080"); //!!!should be enabled for Jenkins
-        _driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, options);
+        //ChromeOptions options = new ChromeOptions();
+        //options.AddArgument("--headless");
+        //options.AddArgument("--no-sandbox");
+        //_webDriver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, options);
+        new DriverManager().SetUpDriver(new ChromeConfig());
+        _webDriver = new ChromeDriver();
     }
 
     // Teardown
     public void Dispose()
     {
-        _driver.Quit();
+        _webDriver.Quit();
+        _webDriver.Dispose();
     }
 
     [Fact, TestPriority(1)]
@@ -59,9 +62,9 @@ public class SampleAppTests : IDisposable
     public void Given_username_text_input_exists_Should_not_return_null()
     {
         // Arrange
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
 
         // Act
         var dynamicButton = elementActions.GetElement(SampleApp.UsernameTextInputElement);
@@ -74,9 +77,9 @@ public class SampleAppTests : IDisposable
     public void Given_password_text_input_exists_Should_not_return_null()
     {
         // Arrange
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
 
         // Act
         var dynamicButton = elementActions.GetElement(SampleApp.PasswordTextInputElement);
@@ -89,9 +92,9 @@ public class SampleAppTests : IDisposable
     public void Given_login_button_exists_Should_not_return_null()
     {
         // Arrange
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
 
         // Act
         var dynamicButton = elementActions.GetElement(SampleApp.LoginButtonElement);
@@ -104,9 +107,9 @@ public class SampleAppTests : IDisposable
     public void Given_login_status_exists_Should_not_return_null()
     {
         // Arrange
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
 
         // Act
         var dynamicButton = elementActions.GetElement(SampleApp.LoginStatusElement);
@@ -124,9 +127,9 @@ public class SampleAppTests : IDisposable
     {
         // Arrange
         string expectedLoginStatusMessage = $"Welcome, {username}!";
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
         // wait at least _maxWaitTime seconds for the website to render the required elements
         WaitForRequiredElements();
 
@@ -149,9 +152,9 @@ public class SampleAppTests : IDisposable
     {
         // Arrange
         const string expectedLoginStatusMessage = "Invalid username/password";
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
         // wait at least _maxWaitTime seconds for the website to render the required elements
         WaitForRequiredElements();
 
@@ -174,9 +177,9 @@ public class SampleAppTests : IDisposable
     {
         // Arrange
         string expectedLoginStatusMessage = $"User logged out.";
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
         // wait at least _maxWaitTime seconds for the website to render the required elements
         WaitForRequiredElements();
 
@@ -200,9 +203,9 @@ public class SampleAppTests : IDisposable
     {
         // Arrange
         string expectedLoginStatusMessage = $"Welcome, {username}!";
-        ElementActions elementActions = new ElementActions(_driver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _driver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
         // wait at least _maxWaitTime seconds for the website to render the required elements
         WaitForRequiredElements();
 
@@ -229,7 +232,7 @@ public class SampleAppTests : IDisposable
         CancellationToken cancellationToken = new CancellationToken();
         cancellationToken.ThrowIfCancellationRequested();
 
-        WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(_maxWaitTime));
+        WebDriverWait wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(_maxWaitTime));
         IWebElement usernameInputExists = wait.Until(driver => driver.FindElement(SampleApp.UsernameTextInputElement), cancellationToken);
         if (usernameInputExists is null)
         {

@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="selenium.webdriver" Version="4.3.0" />
     <PackageReference Include="selenium.webdriver.chromedriver" Version="103.0.5060.13400" />
+    <PackageReference Include="WebDriverManager" Version="2.14.1" />
   </ItemGroup>
 
 </Project>

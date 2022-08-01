@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace UITestingPlayGround.Model.Shared
 {
@@ -8,9 +10,9 @@ namespace UITestingPlayGround.Model.Shared
     /// </summary>
     public class ElementActions
     {
-        private readonly ChromeDriver _chromeDriver;
+        private readonly IWebDriver _chromeDriver;
 
-        public ElementActions(ChromeDriver chromeDriver)
+        public ElementActions(IWebDriver chromeDriver)
         {
             _chromeDriver = chromeDriver;
         }
