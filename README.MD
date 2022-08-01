@@ -46,7 +46,7 @@ In order to run the UI or API tests please follow the instructions below:
 
 ## How to run the test in a CI/CD pipeline
 
-By default the github repository will execute the tests and generate the test reports on each pull request. However, if you wish to execute the test manually simply navigate to the github action [build-test](https://github.com/brandonam/SpriteCloudAssessment/actions/workflows/build-test.yml). Select the last executed test [example](https://github.com/brandonam/SpriteCloudAssessment/actions/runs/2773281212) and click the `Re-run all jobs` button located in the right hand side.
+By default the github repository will execute the tests and generate the test reports on each pull request. However, if you wish to execute the test manually simply navigate to the github action [build-test](https://github.com/brandonam/SpriteCloudAssessment/actions/workflows/build-test.yml). Select the last executed test [example](https://github.com/brandonam/SpriteCloudAssessment/actions/runs/2773281212) and click the `Run Workflow` button located in the right hand side and select the branch on which to run the actions, preferably `master`. Please note that this option may not be available unless you request to become a collaborator, fork or create a new PR.
 
 Test results can be viewed once the second workflow has been executed. These are located in the `build-test` run actions, on the left hand side and are named `Petstore Test Report` and `UITestingPlayGround Test Report` respectively.
 
