@@ -1,16 +1,17 @@
-using System;
-using System.IO;
 using Flurl.Http;
 using Flurl.Http.Testing;
 using Moq;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
+using UITestingPlayground.Tests.Helper;
+using UITestingPlayGround.Model.Pages;
+using UITestingPlayGround.Model.Shared;
 using Xunit;
 using Xunit.Abstractions;
-using UITestingPlayGround.Model.Pages;
-using Flurl;
-using UITestingPlayground.Tests.Helper;
-using OpenQA.Selenium.Support.UI;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
+using OpenQA.Selenium;
 
 namespace UITestingPlayground.Tests;
 
@@ -18,20 +19,30 @@ namespace UITestingPlayground.Tests;
 public class DynamicIdTests : IDisposable
 {
     private readonly ITestOutputHelper _testOutputHelper;
-    private readonly ChromeDriver _chromeDriver;
+    private IWebDriver _webDriver;
     private const string RequestUrl = "http://www.uitestingplayground.com/dynamicid";
 
     // Setup
     public DynamicIdTests(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
-        _chromeDriver = new ChromeDriver(System.AppDomain.CurrentDomain.BaseDirectory);
+        ChromeOptions options = new ChromeOptions();
+        options.AddArguments("start-maximized"); // open Browser in maximized mode
+        options.AddArguments("disable-infobars"); // disabling infobars
+        options.AddArguments("--disable-extensions"); // disabling extensions
+        options.AddArguments("--disable-gpu"); // applicable to windows os only
+        options.AddArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+        options.AddArguments("--no-sandbox"); // Bypass OS security model
+        options.AddArguments("--headless");
+        new DriverManager().SetUpDriver(new ChromeConfig());
+        _webDriver = new ChromeDriver(options);
     }
 
     // Teardown
     public void Dispose()
     {
-        _chromeDriver.Quit();
+        _webDriver.Quit();
+        _webDriver.Dispose();
     }
 
     [Fact, TestPriority(1)]
@@ -53,12 +64,12 @@ public class DynamicIdTests : IDisposable
     {
         // Arrange
 
-        DynamicIdButton uiTapHelper = new DynamicIdButton(_chromeDriver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _chromeDriver.Navigate().GoToUrl(RequestUrl);
+        _webDriver.Navigate().GoToUrl(RequestUrl);
 
         // Act
-        var dynamicButton = uiTapHelper.GetDynamicIdButtonElement();
+        var dynamicButton = elementActions.GetElement(DynamicIdButton.DynamicIdButtonElement);
 
         // Assert
         Assert.NotNull(dynamicButton);
@@ -69,13 +80,14 @@ public class DynamicIdTests : IDisposable
     {
         // Arrange
 
-        DynamicIdButton uiTapHelper = new DynamicIdButton(_chromeDriver);
+        ElementActions elementActions = new ElementActions(_webDriver);
         // navigate to the page
-        _chromeDriver.Navigate().GoToUrl(RequestUrl);
-        new WebDriverWait(_chromeDriver, TimeSpan.FromSeconds(10)).Until(driver => driver.FindElement(uiTapHelper.DynamicButton));
+        _webDriver.Navigate().GoToUrl(RequestUrl);
+        // wait at least 10 seconds for the website to render
+        new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10)).Until(driver => driver.FindElement(DynamicIdButton.DynamicIdButtonElement));
 
         // Act
-        var dynamicButtonClicked = uiTapHelper.DynamicIdButtonClicked();
+        var dynamicButtonClicked = elementActions.ButtonClick(DynamicIdButton.DynamicIdButtonElement);
 
         // Assert
         Assert.True(dynamicButtonClicked);

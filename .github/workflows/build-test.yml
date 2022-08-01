@@ -1,0 +1,60 @@
+name: 'build-test'
+
+on: [push]
+
+jobs:
+  petstore:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
+        working-directory: src/API/Petstore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+        working-directory: src/API/Petstore
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx"
+        working-directory: src/API/Petstore
+      - uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: petstore-test-results
+          path: src/API/Petstore/PetstoreApi.Tests/TestResults/test-results.trx
+        
+  uitestingplayground:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Chrome and chromedriver
+        uses: ./.github/actions/setup-chrome
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore
+        working-directory: src/UI/UITestingPlayGround
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+        working-directory: src/UI/UITestingPlayGround
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx"
+        working-directory: src/UI/UITestingPlayGround
+      - uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: uitestingplayground-test-results
+          path: src/UI/UITestingPlayGround/UITestingPlayground.Tests/TestResults/test-results.trx

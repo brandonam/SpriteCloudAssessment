@@ -3,12 +3,11 @@ using System.Linq;
 
 namespace UITestingPlayground.Tests.Helper;
 
-public static class ChromeDriverHelper
+public static class DriverHelper
 {
-    public static FileInfo? ChromeDriverFolderPath()
+    public static FileInfo? DriverFolderPath(string filename = "chromedriver.exe")
     {
-        const string chromeDriverFile = "chromedriver.exe";
-        var matchingFiles = Directory.EnumerateFiles(System.AppDomain.CurrentDomain.BaseDirectory, chromeDriverFile);
+        var matchingFiles = Directory.EnumerateFiles(System.AppDomain.CurrentDomain.BaseDirectory, filename);
         if (matchingFiles.Any())
         {
             string? selectedChromeDriverFile = matchingFiles.FirstOrDefault();
