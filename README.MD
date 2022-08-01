@@ -86,7 +86,7 @@ For the the API the user login flow is generally the most critical and commonly 
 
  - I also was not able to indentify an easier way to trigger the CICD pipeline using github actions. Spending more time on this may have yeilded better results.
  
- - I was unable to find an elegant way of committing the test results back to the main repo in the time alotted due to ho the github actions are setup. The most effecient way to have them sent committed into the repo automatically during the CICD pipeline build is to commit them into separate branches. The reports are generated as downloadable artifacts and used to generate reports as shown in https://github.com/brandonam/SpriteCloudAssessment#how-to-run-the-test-in-a-cicd-pipeline. But ideally these reports should be committed into the branch itself.
+ - I was unable to find an elegant way of committing the test results back to the main repo in the time alotted. Due to how the github actions are setup as two separate jobs committing back into the repo is not straight forward. Currently the most effecient way I found was to have them committed into the separate branches automatically during the CICD pipeline build. However this still requires a manual merge after the fact. The reports are generated as downloadable artifacts and used to generate reports as shown in https://github.com/brandonam/SpriteCloudAssessment#how-to-run-the-test-in-a-cicd-pipeline as an alternative. But ideally these reports should be committed into the branch itself.
 ## Author
 
 [@brandonmercer](https://github.com/brandonam)
