@@ -5,286 +5,288 @@
       <div class="block"><span>Total tests</span><div class="total-tests">48</div><br></div>
       <div class="block"><span>Passed  : </span><span class="passedTests">47</span><br><span>Failed  : </span><span class="failedTests">1</span><br><span>Skipped : </span><span class="skippedTests">0</span><br></div>
       <div class="block"><span>Pass percentage</span><div class="pass-percentage">97 %</div><br></div>
-      <div class="block"><span>Run duration</span><div class="test-run-time">1m 6s</div><br></div><br></div>
+      <div class="block"><span>Run duration</span><div class="test-run-time">52s 620ms</div><br></div><br></div>
     <h2>Failed Results</h2>
-    <div class="list-row" onclick="ToggleClass('-1738764042-failedResult')">C:\Users\brand\OneDrive\Documents\GitHub\SpriteCloudAssessment\src\UI\UITestingPlayGround\UITestingPlayground.Tests\bin\Debug\net6.0\UITestingPlayground.Tests.dll</div>
-    <div class="inner-row" Id="-1738764042-failedResult" style="display:block;">
+    <div class="list-row" onclick="ToggleClass('1871054026-failedResult')">/home/runner/work/SpriteCloudAssessment/SpriteCloudAssessment/src/UI/UITestingPlayGround/UITestingPlayground.Tests/bin/Debug/net6.0/UITestingPlayground.Tests.dll</div>
+    <div class="inner-row" Id="1871054026-failedResult" style="display:block;">
       <div class="leaf-division">
-        <div><span class="fail">✘</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field​</span><div class="duration"><span>2s 925ms</span><br></div>
+        <div><span class="fail">✘</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field​</span><div class="duration"><span>15s 799ms</span><br></div>
         </div>
         <div class="error-info">
-    Error: <span class="error-message"><pre>Expected clipboardValue to be equivalent to "7351d9ae-dcd1-718b-06e1-a592ecd223ad" with a length of 36 because of a defect in the UITestingPlayground website which I logged here - https://github.com/Inflectra/ui-test-automation-playground/issues/10, but "dotnet test --no-restore --verbosity normal --logger "html;LogFileName=../../../../../testresults/uitestingplayground-test-results.html" --logger "trx;LogFileName=test-results.trx"" has a length of 180, differs near "dot" (index 0).</pre></span><br>
-    Stack trace: <span class="error-stack-trace"><pre>   at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
-   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
-   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
-   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
-   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
-   at FluentAssertions.Primitives.StringEqualityValidator.ValidateAgainstLengthDifferences()
-   at FluentAssertions.Primitives.StringValidator.Validate()
-   at FluentAssertions.Primitives.StringAssertions`1.BeEquivalentTo(String expected, String because, Object[] becauseArgs)
-   at UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field() in C:\Users\brand\OneDrive\Documents\GitHub\SpriteCloudAssessment\src\UI\UITestingPlayGround\UITestingPlayground.Tests\ShadowDOMTests.cs:line 148
+    Error: <span class="error-message"><pre>System.Exception : Could not execute process. Command line: bash -c "xsel -o --clipboard  &gt; /tmp/tmpp4T2jj.tmp".
+Output: 
+
+Error: bash: xsel: command not found
+
+</pre></span><br>
+    Stack trace: <span class="error-stack-trace"><pre>   at BashRunner.Run(String commandLine) in /_/src/TextCopy/BashRunner.cs:line 42
+   at LinuxClipboard.InnerGetText(String tempFileName) in /_/src/TextCopy/LinuxClipboard_2.1.cs:line 87
+   at LinuxClipboard.GetTextAsync(CancellationToken cancellation) in /_/src/TextCopy/LinuxClipboard_2.1.cs:line 70
+   at UITestingPlayground.Tests.ShadowDOMTests.GetClipboardDataAsync() in /home/runner/work/SpriteCloudAssessment/SpriteCloudAssessment/src/UI/UITestingPlayGround/UITestingPlayground.Tests/ShadowDOMTests.cs:line 153
+   at UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field() in /home/runner/work/SpriteCloudAssessment/SpriteCloudAssessment/src/UI/UITestingPlayGround/UITestingPlayground.Tests/ShadowDOMTests.cs:line 144
    at System.Threading.Tasks.Task.&lt;&gt;c.&lt;ThrowAsync&gt;b__128_0(Object state)</pre></span><br></div>
       </div>
     </div>
     <h2>All Results</h2>
-    <div class="list-row" onclick="ToggleClass('-1738764042')">C:\Users\brand\OneDrive\Documents\GitHub\SpriteCloudAssessment\src\UI\UITestingPlayGround\UITestingPlayground.Tests\bin\Debug\net6.0\UITestingPlayground.Tests.dll</div>
-    <div class="inner-row" Id="-1738764042" style="display:none;">
+    <div class="list-row" onclick="ToggleClass('1871054026')">/home/runner/work/SpriteCloudAssessment/SpriteCloudAssessment/src/UI/UITestingPlayGround/UITestingPlayground.Tests/bin/Debug/net6.0/UITestingPlayground.Tests.dll</div>
+    <div class="inner-row" Id="1871054026" style="display:none;">
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_Website_When_Navigated_Should_Return_Success_Response​</span><div class="duration"><span>2s 420ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_Website_When_Navigated_Should_Return_Success_Response​</span><div class="duration"><span>1s 202ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_Website_When_Navigated_Should_Return_Success_Response​</span><div class="duration"><span>2s 437ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_Website_When_Navigated_Should_Return_Success_Response​</span><div class="duration"><span>1s 211ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_Website_When_Navigated_Should_Return_Success_Response​</span><div class="duration"><span>2s 456ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_Text_Input_Exists_Should_Not_Return_Null​</span><div class="duration"><span>807ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.DynamicIdTests.Given_Website_When_Navigated_Should_Return_Success_Response​</span><div class="duration"><span>2s 593ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_fetch_ajax_button_exists_Should_not_return_null​</span><div class="duration"><span>809ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_Website_When_Navigated_Should_Return_Success_Response​</span><div class="duration"><span>2s 629ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_loading_daisy_hidden_but_exists_Should_not_return_null​</span><div class="duration"><span>661ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.DynamicIdTests.Given_Dynamic_Id_Button_Exists_Should_Not_Return_Null​</span><div class="duration"><span>5s 108ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_Update_Button_Exists_Should_Not_Return_Null​</span><div class="duration"><span>937ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_fetch_ajax_button_exists_Should_not_return_null​</span><div class="duration"><span>5s 282ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_fetch_ajax_button_exists_When_button_clicked_Should_display_loading_daisy​</span><div class="duration"><span>683ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_copy_button_exists_Should_not_return_null​</span><div class="duration"><span>5s 346ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: "New Text")​</span><div class="duration"><span>770ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_login_button_exists_Should_not_return_null​</span><div class="duration"><span>5s 470ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: "BUTTONUPDATED")​</span><div class="duration"><span>786ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_Text_Input_Exists_Should_Not_Return_Null​</span><div class="duration"><span>5s 520ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: "button_!#$%^&amp;")​</span><div class="duration"><span>703ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.DynamicIdTests.Given_Dynamic_Id_Button_Exists_When_Clicked_Should_Return_True​</span><div class="duration"><span>2s 964ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: "1")​</span><div class="duration"><span>669ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_loading_daisy_hidden_but_exists_Should_not_return_null​</span><div class="duration"><span>3s 102ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: ".")​</span><div class="duration"><span>666ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_login_status_exists_Should_not_return_null​</span><div class="duration"><span>2s 991ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: ". .")​</span><div class="duration"><span>664ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_generate_button_exists_Should_not_return_null​</span><div class="duration"><span>3s 150ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_and_update_button_clicked_more_than_once_Should_find_each_update​</span><div class="duration"><span>886ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_Update_Button_Exists_Should_Not_Return_Null​</span><div class="duration"><span>2s 895ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_no_input_and_update_button_clicked_Should_not_update_button_text(text: "")​</span><div class="duration"><span>651ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_Should_not_return_null​</span><div class="duration"><span>2s 813ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_no_input_and_update_button_clicked_Should_not_update_button_text(text: null)​</span><div class="duration"><span>612ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_fetch_ajax_button_exists_When_button_clicked_Should_display_loading_daisy​</span><div class="duration"><span>2s 932ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.DynamicIdTests.Given_Website_When_Navigated_Should_Return_Success_Response​</span><div class="duration"><span>184ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_password_text_input_exists_Should_not_return_null​</span><div class="duration"><span>2s 945ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.DynamicIdTests.Given_Dynamic_Id_Button_Exists_Should_Not_Return_Null​</span><div class="duration"><span>519ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: "New Text")​</span><div class="duration"><span>3s 99ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.DynamicIdTests.Given_Dynamic_Id_Button_Exists_When_Clicked_Should_Return_True​</span><div class="duration"><span>556ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_username_text_input_exists_Should_not_return_null​</span><div class="duration"><span>2s 698ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_Website_When_Navigated_Should_Return_Success_Response​</span><div class="duration"><span>187ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="fail">✘</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field​</span><div class="duration"><span>2s 925ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_copy_button_exists_Should_not_return_null​</span><div class="duration"><span>602ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_generate_button_exists_Should_not_return_null​</span><div class="duration"><span>600ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_Should_not_return_null​</span><div class="duration"><span>566ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_Website_When_Navigated_Should_Return_Success_Response​</span><div class="duration"><span>187ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_login_button_exists_Should_not_return_null​</span><div class="duration"><span>551ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_login_status_exists_Should_not_return_null​</span><div class="duration"><span>533ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_password_text_input_exists_Should_not_return_null​</span><div class="duration"><span>557ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_username_text_input_exists_Should_not_return_null​</span><div class="duration"><span>554ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_invalid_user_and_password_When_login_button_clicked_Should_display_login_status_invalid(username: "", password: "")​</span><div class="duration"><span>717ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_invalid_user_and_password_When_login_button_clicked_Should_display_login_status_invalid(username: null, password: "p")​</span><div class="duration"><span>768ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_invalid_user_and_password_When_login_button_clicked_Should_display_login_status_invalid(username: "!@#$", password: "test")​</span><div class="duration"><span>707ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_invalid_user_and_password_When_login_button_clicked_Should_display_login_status_invalid(username: "!@#$", password: null)​</span><div class="duration"><span>666ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_fetch_ajax_button_exists_When_button_clicked_Should_load_data_after_max_15_seconds​</span><div class="duration"><span>15s 973ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_and_then_login_again_Should_update_login_status(username: "test", password: "pwd")​</span><div class="duration"><span>861ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_and_then_login_again_Should_update_login_status(username: "1234", password: "pwd")​</span><div class="duration"><span>933ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_and_then_login_again_Should_update_login_status(username: "!@#$", password: "pwd")​</span><div class="duration"><span>1s 301ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_and_then_login_again_Should_update_login_status(username: "Test1234%", password: "pwd")​</span><div class="duration"><span>844ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_Should_update_login_status(username: "test", password: "pwd")​</span><div class="duration"><span>786ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_Should_update_login_status(username: "1234", password: "pwd")​</span><div class="duration"><span>783ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_Should_update_login_status(username: "!@#$", password: "pwd")​</span><div class="duration"><span>729ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_Should_update_login_status(username: "Test1234%", password: "pwd")​</span><div class="duration"><span>734ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_Should_update_login_status(username: "test", password: "pwd")​</span><div class="duration"><span>708ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_Should_update_login_status(username: "1234", password: "pwd")​</span><div class="duration"><span>700ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_Should_update_login_status(username: "!@#$", password: "pwd")​</span><div class="duration"><span>704ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_Should_update_login_status(username: "Test1234%", password: "pwd")​</span><div class="duration"><span>714ms</span><br></div>
+        </div>
+        <div class="error-info"></div>
+      </div>
+      <div class="leaf-division">
+        <div><span class="fail">✘</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field​</span><div class="duration"><span>15s 799ms</span><br></div>
         </div>
         <div class="error-info">
-    Error: <span class="error-message"><pre>Expected clipboardValue to be equivalent to "7351d9ae-dcd1-718b-06e1-a592ecd223ad" with a length of 36 because of a defect in the UITestingPlayground website which I logged here - https://github.com/Inflectra/ui-test-automation-playground/issues/10, but "dotnet test --no-restore --verbosity normal --logger "html;LogFileName=../../../../../testresults/uitestingplayground-test-results.html" --logger "trx;LogFileName=test-results.trx"" has a length of 180, differs near "dot" (index 0).</pre></span><br>
-    Stack trace: <span class="error-stack-trace"><pre>   at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)
-   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)
-   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)
-   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
-   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)
-   at FluentAssertions.Primitives.StringEqualityValidator.ValidateAgainstLengthDifferences()
-   at FluentAssertions.Primitives.StringValidator.Validate()
-   at FluentAssertions.Primitives.StringAssertions`1.BeEquivalentTo(String expected, String because, Object[] becauseArgs)
-   at UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field() in C:\Users\brand\OneDrive\Documents\GitHub\SpriteCloudAssessment\src\UI\UITestingPlayGround\UITestingPlayground.Tests\ShadowDOMTests.cs:line 148
+    Error: <span class="error-message"><pre>System.Exception : Could not execute process. Command line: bash -c "xsel -o --clipboard  &gt; /tmp/tmpp4T2jj.tmp".
+Output: 
+
+Error: bash: xsel: command not found
+
+</pre></span><br>
+    Stack trace: <span class="error-stack-trace"><pre>   at BashRunner.Run(String commandLine) in /_/src/TextCopy/BashRunner.cs:line 42
+   at LinuxClipboard.InnerGetText(String tempFileName) in /_/src/TextCopy/LinuxClipboard_2.1.cs:line 87
+   at LinuxClipboard.GetTextAsync(CancellationToken cancellation) in /_/src/TextCopy/LinuxClipboard_2.1.cs:line 70
+   at UITestingPlayground.Tests.ShadowDOMTests.GetClipboardDataAsync() in /home/runner/work/SpriteCloudAssessment/SpriteCloudAssessment/src/UI/UITestingPlayGround/UITestingPlayground.Tests/ShadowDOMTests.cs:line 153
+   at UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field() in /home/runner/work/SpriteCloudAssessment/SpriteCloudAssessment/src/UI/UITestingPlayGround/UITestingPlayground.Tests/ShadowDOMTests.cs:line 144
    at System.Threading.Tasks.Task.&lt;&gt;c.&lt;ThrowAsync&gt;b__128_0(Object state)</pre></span><br></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: "BUTTONUPDATED")​</span><div class="duration"><span>2s 819ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generate_button_clicked_Should_not_be_empty​</span><div class="duration"><span>646ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
       <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generate_button_clicked_Should_not_be_empty​</span><div class="duration"><span>2s 782ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: "button_!#$%^&amp;")​</span><div class="duration"><span>2s 695ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_invalid_user_and_password_When_login_button_clicked_Should_display_login_status_invalid(username: "", password: "")​</span><div class="duration"><span>3s 412ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: "1")​</span><div class="duration"><span>2s 722ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_invalid_user_and_password_When_login_button_clicked_Should_display_login_status_invalid(username: null, password: "p")​</span><div class="duration"><span>2s 729ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: ".")​</span><div class="duration"><span>2s 727ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_invalid_user_and_password_When_login_button_clicked_Should_display_login_status_invalid(username: "!@#$", password: "test")​</span><div class="duration"><span>2s 624ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_invalid_user_and_password_When_login_button_clicked_Should_display_login_status_invalid(username: "!@#$", password: null)​</span><div class="duration"><span>2s 791ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_added_and_update_button_clicked_Should_update_button_text(text: ". .")​</span><div class="duration"><span>3s 454ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_and_then_login_again_Should_update_login_status(username: "test", password: "pwd")​</span><div class="duration"><span>2s 830ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_input_and_update_button_clicked_more_than_once_Should_find_each_update​</span><div class="duration"><span>2s 894ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_fetch_ajax_button_exists_When_button_clicked_Should_load_data_after_max_15_seconds​</span><div class="duration"><span>18s 143ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_and_then_login_again_Should_update_login_status(username: "1234", password: "pwd")​</span><div class="duration"><span>2s 782ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_no_input_and_update_button_clicked_Should_not_update_button_text(text: "")​</span><div class="duration"><span>2s 750ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_and_then_login_again_Should_update_login_status(username: "!@#$", password: "pwd")​</span><div class="duration"><span>2s 838ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.TextInputTests.Given_input_text_and_update_button_Exists_When_no_input_and_update_button_clicked_Should_not_update_button_text(text: null)​</span><div class="duration"><span>2s 735ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_and_then_login_again_Should_update_login_status(username: "Test1234%", password: "pwd")​</span><div class="duration"><span>2s 870ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_Should_update_login_status(username: "test", password: "pwd")​</span><div class="duration"><span>2s 710ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_Should_update_login_status(username: "1234", password: "pwd")​</span><div class="duration"><span>2s 798ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_Should_update_login_status(username: "!@#$", password: "pwd")​</span><div class="duration"><span>2s 753ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_followedby_logout_clicked_Should_update_login_status(username: "Test1234%", password: "pwd")​</span><div class="duration"><span>2s 787ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_Should_update_login_status(username: "test", password: "pwd")​</span><div class="duration"><span>2s 579ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_Should_update_login_status(username: "1234", password: "pwd")​</span><div class="duration"><span>2s 661ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_Should_update_login_status(username: "!@#$", password: "pwd")​</span><div class="duration"><span>2s 804ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.SampleAppTests.Given_valid_user_and_password_When_login_button_clicked_Should_update_login_status(username: "Test1234%", password: "pwd")​</span><div class="duration"><span>2s 603ms</span><br></div>
-        </div>
-        <div class="error-info"></div>
-      </div>
-      <div class="leaf-division">
-        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_fetch_ajax_button_exists_When_button_clicked_twice_Should_load_two_elements_with_data_after_30_seconds​</span><div class="duration"><span>33s 489ms</span><br></div>
+        <div><span class="pass">✔</span><span> UITestingPlayground.Tests.AjaxDataTests.Given_fetch_ajax_button_exists_When_button_clicked_twice_Should_load_two_elements_with_data_after_30_seconds​</span><div class="duration"><span>31s 258ms</span><br></div>
         </div>
         <div class="error-info"></div>
       </div>
     </div>
     <div>
-      <h2>Informational messages</h2><span>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.4.5+1caef2f33e (64-bit .NET 6.0.7)</span><br><span>[xUnit.net 00:00:00.49]   Discovering: UITestingPlayground.Tests</span><br><span>[xUnit.net 00:00:00.54]   Discovered:  UITestingPlayground.Tests</span><br><span>[xUnit.net 00:00:00.54]   Starting:    UITestingPlayground.Tests</span><br><span>[xUnit.net 00:00:17.27]       Expected clipboardValue to be equivalent to "7351d9ae-dcd1-718b-06e1-a592ecd223ad" with a length of 36 because of a defect in the UITestingPlayground website which I logged here - https://github.com/Inflectra/ui-test-automation-playground/issues/10, but "dotnet test --no-restore --verbosity normal --logger "html;LogFileName=../../../../../testresults/uitestingplayground-test-results.html" --logger "trx;LogFileName=test-results.trx"" has a length of 180, differs near "dot" (index 0).</span><br><span>[xUnit.net 00:00:17.27]       Stack Trace:</span><br><span>[xUnit.net 00:00:17.27]            at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)</span><br><span>[xUnit.net 00:00:17.27]            at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)</span><br><span>[xUnit.net 00:00:17.27]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)</span><br><span>[xUnit.net 00:00:17.27]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)</span><br><span>[xUnit.net 00:00:17.27]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)</span><br><span>[xUnit.net 00:00:17.27]            at FluentAssertions.Primitives.StringEqualityValidator.ValidateAgainstLengthDifferences()</span><br><span>[xUnit.net 00:00:17.27]            at FluentAssertions.Primitives.StringValidator.Validate()</span><br><span>[xUnit.net 00:00:17.27]            at FluentAssertions.Primitives.StringAssertions`1.BeEquivalentTo(String expected, String because, Object[] becauseArgs)</span><br><span>[xUnit.net 00:00:17.27]         C:\Users\brand\OneDrive\Documents\GitHub\SpriteCloudAssessment\src\UI\UITestingPlayGround\UITestingPlayground.Tests\ShadowDOMTests.cs(148,0): at UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field()</span><br><span>[xUnit.net 00:00:17.27]            at System.Threading.Tasks.Task.&lt;&gt;c.&lt;ThrowAsync&gt;b__128_0(Object state)</span><br><span>[xUnit.net 00:00:17.27]       Output:</span><br><span>[xUnit.net 00:00:17.27]         InputField GUID = 7351d9ae-dcd1-718b-06e1-a592ecd223ad</span><br><span>[xUnit.net 00:00:17.27]         Clipboard GUID = dotnet test --no-restore --verbosity normal --logger "html;LogFileName=../../../../../testresults/uitestingplayground-test-results.html" --logger "trx;LogFileName=test-results.trx"</span><br><span>[xUnit.net 00:01:06.01]   Finished:    UITestingPlayground.Tests</span><br></div>
+      <h2>Informational messages</h2><span>[xUnit.net 00:00:00.01] xUnit.net VSTest Adapter v2.4.5+1caef2f33e (64-bit .NET 6.0.7)</span><br><span>[xUnit.net 00:00:00.96]   Discovering: UITestingPlayground.Tests</span><br><span>[xUnit.net 00:00:01.04]   Discovered:  UITestingPlayground.Tests</span><br><span>[xUnit.net 00:00:01.04]   Starting:    UITestingPlayground.Tests</span><br><span>[xUnit.net 00:00:29.54]       System.Exception : Could not execute process. Command line: bash -c "xsel -o --clipboard  &gt; /tmp/tmpp4T2jj.tmp".</span><br><span>[xUnit.net 00:00:29.54]       Output: </span><br><span>[xUnit.net 00:00:29.54]       </span><br><span>[xUnit.net 00:00:29.54]       Error: bash: xsel: command not found</span><br><span>[xUnit.net 00:00:29.54]       </span><br><span>[xUnit.net 00:00:29.54]       </span><br><span>[xUnit.net 00:00:29.54]       Stack Trace:</span><br><span>[xUnit.net 00:00:29.54]         /_/src/TextCopy/BashRunner.cs(42,0): at BashRunner.Run(String commandLine)</span><br><span>[xUnit.net 00:00:29.54]         /_/src/TextCopy/LinuxClipboard_2.1.cs(87,0): at LinuxClipboard.InnerGetText(String tempFileName)</span><br><span>[xUnit.net 00:00:29.54]         /_/src/TextCopy/LinuxClipboard_2.1.cs(70,0): at LinuxClipboard.GetTextAsync(CancellationToken cancellation)</span><br><span>[xUnit.net 00:00:29.54]         /home/runner/work/SpriteCloudAssessment/SpriteCloudAssessment/src/UI/UITestingPlayGround/UITestingPlayground.Tests/ShadowDOMTests.cs(153,0): at UITestingPlayground.Tests.ShadowDOMTests.GetClipboardDataAsync()</span><br><span>[xUnit.net 00:00:29.54]         /home/runner/work/SpriteCloudAssessment/SpriteCloudAssessment/src/UI/UITestingPlayGround/UITestingPlayground.Tests/ShadowDOMTests.cs(144,0): at UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field()</span><br><span>[xUnit.net 00:00:29.54]            at System.Threading.Tasks.Task.&lt;&gt;c.&lt;ThrowAsync&gt;b__128_0(Object state)</span><br><span>[xUnit.net 00:00:29.54]       Output:</span><br><span>[xUnit.net 00:00:29.54]         InputField GUID = 8dd44304-c36c-93cb-aeeb-49780eb5a7fd</span><br><span>[xUnit.net 00:00:51.73]   Finished:    UITestingPlayground.Tests</span><br></div>
     <div>
-      <h2>Error and Warning messages</h2><span>[xUnit.net 00:00:17.27]     UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field [FAIL]</span><br></div>
+      <h2>Error and Warning messages</h2><span>[xUnit.net 00:00:29.54]     UITestingPlayground.Tests.ShadowDOMTests.Given_guid_input_field_exists_When_guid_generated_and_copy_button_clicked_Should_be_equal_clipboard_and_input_field [FAIL]</span><br></div>
   </body><script language="javascript">
         function ToggleClass(id) {
         var elem = document.getElementById(id);
