@@ -1,4 +1,4 @@
-name: Petstore-API - Build/Test 
+name: 'Build/Test'
 
 on: [push]
 
