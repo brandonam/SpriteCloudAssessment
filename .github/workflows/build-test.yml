@@ -22,13 +22,19 @@ jobs:
         run: dotnet build --configuration Release --no-restore
         working-directory: src/API/Petstore
       - name: Test
-        run: dotnet test --no-restore --verbosity detailed --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx"
         working-directory: src/API/Petstore
-      - uses: actions/upload-artifact@v2  # upload test results
-        if: success() || failure()        # run this step even if previous step failed
+      - uses: actions/upload-artifact@v2
+        if: success() || failure()
         with:
           name: test-results
           path: src/API/Petstore/PetstoreApi.Tests/TestResults/test-results.trx
+      - uses: dorny/test-reporter@v1
+        with:
+          artifact: test-results
+          name: Xunit Tests
+          path: '*.trx'
+          reporter: dotnet-trx
         
   uitestingplayground:
     runs-on: ubuntu-latest
@@ -51,5 +57,16 @@ jobs:
         run: dotnet build --configuration Release --no-restore
         working-directory: src/UI/UITestingPlayGround
       - name: Test
-        run: dotnet test --no-restore --verbosity detailed --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx"
         working-directory: src/UI/UITestingPlayGround
+      - uses: actions/upload-artifact@v2
+        if: success() || failure()
+        with:
+          name: test-results
+          path: src/API/Petstore/PetstoreApi.Tests/TestResults/test-results.trx
+      - uses: dorny/test-reporter@v1
+        with:
+          artifact: test-results
+          name: Xunit Tests
+          path: '*.trx'
+          reporter: dotnet-trx
