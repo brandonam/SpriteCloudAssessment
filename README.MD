@@ -56,7 +56,8 @@ Example reports from a previous run can be found below
 
 ## Has a link to the results in Calliope.pro
 
-
+- [Petstore Test Report](https://app.calliope.pro/reports/140632) 
+- [UITestingPlayground Test Report](https://app.calliope.pro/reports/140633) 
 
 ## Describe one improvement point and one new feature for the Calliope.pro platform
 
