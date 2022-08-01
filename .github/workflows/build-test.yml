@@ -27,11 +27,11 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
-          name: test-results
+          name: petstore-test-results
           path: src/API/Petstore/PetstoreApi.Tests/TestResults/test-results.trx
       - uses: dorny/test-reporter@v1
         with:
-          artifact: test-results
+          artifact: petstore-test-results
           name: Xunit Tests
           path: '*.trx'
           reporter: dotnet-trx
@@ -62,11 +62,11 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
-          name: test-results
-          path: src/API/Petstore/PetstoreApi.Tests/TestResults/test-results.trx
+          name: uitestingplayground-test-results
+          path: src/UI/UITestingPlayGround/UITestingPlayGround.Tests/TestResults/test-results.trx
       - uses: dorny/test-reporter@v1
         with:
-          artifact: test-results
+          artifact: uitestingplayground-test-results
           name: Xunit Tests
           path: '*.trx'
           reporter: dotnet-trx
