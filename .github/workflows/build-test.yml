@@ -29,12 +29,6 @@ jobs:
         with:
           name: petstore-test-results
           path: src/API/Petstore/PetstoreApi.Tests/TestResults/test-results.trx
-      - uses: dorny/test-reporter@v1
-        with:
-          artifact: petstore-test-results
-          name: Xunit Tests
-          path: '*.trx'
-          reporter: dotnet-trx
         
   uitestingplayground:
     runs-on: ubuntu-latest
@@ -64,9 +58,3 @@ jobs:
         with:
           name: uitestingplayground-test-results
           path: src/UI/UITestingPlayGround/UITestingPlayground.Tests/TestResults/test-results.trx
-      - uses: dorny/test-reporter@v1
-        with:
-          artifact: uitestingplayground-test-results
-          name: Xunit Tests
-          path: '*.trx'
-          reporter: dotnet-trx
