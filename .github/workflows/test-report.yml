@@ -11,7 +11,7 @@ jobs:
     - uses: dorny/test-reporter@v1
       with:
         artifact: petstore-test-results
-        name: Xunit Tests
+        name: 'Petstore Test Report'
         path: '*.trx'
         reporter: dotnet-trx
 
@@ -21,6 +21,6 @@ jobs:
     - uses: dorny/test-reporter@v1
       with:
         artifact: uitestingplayground-test-results
-        name: Xunit Tests
+        name: 'UITestingPlayGround Test Report'
         path: '*.trx'
         reporter: dotnet-trx
