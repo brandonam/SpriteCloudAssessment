@@ -85,6 +85,7 @@ For the UI I focused on identifying the most reusable components and interaction
 For the the API the user login flow is critical to accessing a system of this nature (Transactional Processing) to begin with and is most commonly the first entry point. I focused on tests that would ensure that a user could first gain access to the system and then potentially would require this users api key/authorization to interact any further. Such as adding new items, before doing more trivial flows such as searching for an item which generally dont revolve around authentication and authorization.
 
 ## What could be the next steps to your project
+Had I had more time I would like to have setup [Selenoid](https://aerokube.com/selenoid/) for cross-browser testing via docker containers for the selenium UI test automation. While rather easy to configure and run. I ran short on time to develop the required extensibility in the UI project to allow commands to control the configuration and execution of the tests.
 
 ## Author
 
