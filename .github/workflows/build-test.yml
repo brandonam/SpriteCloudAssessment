@@ -29,10 +29,7 @@ jobs:
         with:
           name: petstore-test-results
           path: src/API/Petstore/PetstoreApi.Tests/TestResults/test-results.trx
-      - name: 'Post to calliope.pro'
-        run: |
-            curl -X POST -H "x-api-key:NTJmM2QzNjg4Y2QwMDVkYzZiOTkzMzhmNWFmYWNlMmRkNjRhNzFiNTczODcwZWQyYTQ3ZWViODFiN2ExODVjNmNk" -H "Content-Type:multipart/form-data" -F "file[]=@src/UI/UITestingPlayGround/UITestingPlayground.Tests/TestResults/test-results.trx" "https://app.calliope.pro/api/v2/profile/4426/import?tag[]=os:myos&tag[]=platform:myplatform&tag[]=build:mybuild"
-        
+     
   uitestingplayground:
     runs-on: ubuntu-latest
     strategy:
