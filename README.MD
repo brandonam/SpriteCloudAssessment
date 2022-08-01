@@ -82,9 +82,11 @@ For the UI I focused on identifying the most reusable components and interaction
 For the the API the user login flow is generally the most critical and commonly used way to accessing a system of this nature (Transactional Processing). Focusing on tests that would ensure that a user could first gain access to the system, (register, login and logout) and then would potentially require this users api key/authorization to interact with the system further, such as adding new items. After which the focus was changed to doing more trivial flows such as searching, these interactions generally dont require or require limited authentication and authorization.
 
 ## What could be the next steps to your project?
-If time allowed I would like to have setup [Selenoid](https://aerokube.com/selenoid/) for cross-browser testing via docker containers for the selenium UI test automation. While rather easy to configure and run, time did not allow for me to develop the required extensibility in the UI project. This would allow commands to control the configuration and execution of the tests through different setups.
+ - If time allowed I would like to have setup [Selenoid](https://aerokube.com/selenoid/) for cross-browser testing via docker containers for the selenium UI test automation. While rather easy to configure and run, time did not allow for me to develop the required extensibility in the UI project. This would allow commands to control the configuration and execution of the tests through different setups.
 
-I also was not able to indentify an easier way to trigger the CICD pipeline using github actions. Spending more time on this may have yeilded better results.
+ - I also was not able to indentify an easier way to trigger the CICD pipeline using github actions. Spending more time on this may have yeilded better results.
+ 
+ - An issue I've encountered with the setup of CICD pipeline, results in the need for a new branch to be created automatically before the reports will be merged back into the repo in the testresults folder. This is a somewhat automated process, besides a manual merge back into the repo being required. A more effecient process that is fully automated would be preferrable.
 ## Author
 
 [@brandonmercer](https://github.com/brandonam)
