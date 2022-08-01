@@ -22,8 +22,12 @@ jobs:
         run: dotnet build --configuration Release --no-restore
         working-directory: src/API/Petstore
       - name: Test
-        run: dotnet test --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test --no-restore --verbosity normal --logger "html;LogFileName=petstore-test-results.html" --logger "trx;LogFileName=test-results.trx"
         working-directory: src/API/Petstore
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v9.0.1
+        with:
+          add: 'src/API/Petstore/PetstoreApi.Tests/TestResults/petstore-test-results.html'
       - uses: actions/upload-artifact@v2
         if: success() || failure()
         with:
@@ -51,7 +55,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
         working-directory: src/UI/UITestingPlayGround
       - name: Test
-        run: dotnet test --no-restore --verbosity normal --logger "trx;LogFileName=test-results.trx"
+        run: dotnet test --no-restore --verbosity normal --logger "html;LogFileName=uitestingplayground-test-results.html" --logger "trx;LogFileName=test-results.trx"
         working-directory: src/UI/UITestingPlayGround
       - uses: actions/upload-artifact@v2
         if: success() || failure()

@@ -19,8 +19,8 @@ __Run via terminal__
 
 In order to run the UI or API tests please follow the instructions below:
 
-1. In your terminal of choice navigate the to the repository root.
-2. Navigate to the folder or use of of the following commands.
+1. In your terminal of choice navigate to the repository root.
+2. Navigate to the folder or use one of the following commands.
 
     **Petstore**
     ```
@@ -32,7 +32,6 @@ In order to run the UI or API tests please follow the instructions below:
     ```
     cd .\src\UI\UITestingPlayGround\
     ```
-
 3. Run the following command to run the respective tests:
     ``` 
     dotnet test
@@ -63,11 +62,11 @@ Example reports from a previous run can be found below
 
 **_Improvement_**:
 
-The intial user experience after a new user signup. The user is presented with a "getting started" wizard and is required to create groups and profiles. Clicking each of the components takes them to a page to create and insert the data required. However there are no descriptions for what these groups/profiles are responsible at first glance and requires one find and read the documentation page, unfortunately launching this link opens the documents in the same page rather than opening a blank tab.
+The intial user experience after a new user signup. The user is presented with a "getting started" wizard and is required to create groups and profiles. Clicking each of the components takes them to a page to create and insert the data required. However there are no descriptions for what these groups/profiles are responsible for at first glance and requires one to find and read the documentation page, unfortunately launching this link opens the documents page in the same tab rather than opening a blank tab.
 
 **_Feature_**:
 
-As a user of the latest version of dotnet and Xunit it required finding a 3rd party library to resolve the reports into a format that is supported by calliope pro. Unfortunalte, the latest version of Xunit used in conjunction with dotnet 6 has deprecated xunit v2 xml report format. Support for more formats would be ideal due to changing technologies and the constantly evolving landscape of testing frameworks and report types. Instead of having to build multiple report parsers internally, it could be feasible to provide a template and externalise and open source a plugin system which allows the report parser logic to be developed and maintained by 3rd parties.
+As a user of the latest version of dotnet and Xunit it required finding a 3rd party library to resolve the reports into a format that is supported by calliope pro. Unfortunately, the latest version of Xunit used in conjunction with dotnet 6 has deprecated xunit v2 xml report format. Support for more formats would be ideal due to changing technologies and the constantly evolving landscape of testing frameworks and report types. Instead of having to build multiple report parsers internally, it could be feasible to provide a template and externalise and open source a plugin system which allows the report parser logic to be developed and maintained by 3rd parties.
 
 ## What you used to select the scenarios, what was your approach?
 
@@ -75,15 +74,15 @@ I approached both the UI and API tests separately when identifying the most impo
 
 For the UI tests I noted the UI is not a traditional web applications which would for example track data/users/transactions, but is rather just a collection of pages containing html elements. This changes how one approaches interactions and user flows. So I began by analysing the website. Navigating the various pages, interacting with the various elements, how they were constructed using dev tools and noting and analyzing the source code during these various interactions. Ultimately for the UI it was easier to treat each web page as a standalone resource that has no tanglible connection to one another.
 
-For the API it was obvious based on the configuration, naming and overall setup and layout of the API resources and endpooints used that this was a type of Transaction Processing System. Having imported the swagger.json in postman I interacted with the system and the various endpoints to observe how they reacted in various scenarios. Ultimately deciding to approach it from a users perspective from the outside in, taking the flows a new user would experience when first interacting with a system using this API. I also noted that the system had data available which simplified the choice of scenarios and meant that scenarios around data creation did not neccessarily have to be tested first.
+For the API it was evident, based on the configuration, naming and layout of it's resources and endpoints, that this was a type of Transaction Processing System. Having imported the swagger.json in postman I interacted with the system and the various endpoints to observe how they reacted in various scenarios. Ultimately deciding to approach it from a users perspective from the outside in, taking the flows a new user would experience when first interacting with a system using this API. I also noted that the system had data available which simplified the choice of scenarios and meant that scenarios around data creation did not neccessarily have to be tested first.
 
-## Why are they the most important
-For the UI I focused on identifying the most reusable components and interactions in order to build a framework that would ultimately allow me to interact with the more sophisticated pages such as [SampleApp](http://www.uitestingplayground.com/sampleapp). In this example, the page has multiple user interactions and flows, but underlying components/interactions are the same/similar that could be found in many other pages. Thus by testing and creating those simpler interactions first, a resubale framework was developed which could evolve as new components were tested.
+## Why are they the most important?
+For the UI I focused on identifying the most reusable components and interactions in order to build a framework that would ultimately allow me to interact with the more sophisticated pages such as [SampleApp](http://www.uitestingplayground.com/sampleapp). In this example, the page has multiple user interactions and flows, but underlying components/interactions are the same/similar that could be found in many other pages. Thus by testing and creating those simpler interactions first, a reusable framework was developed which could evolve as new components were tested.
 
-For the the API the user login flow is generally the most critical and commonly used way to accessing a system of this nature (Transactional Processing). Focusing on tests that would ensure that a user could first gain access to the system, (register, login and logout) and then potentially would require this users api key/authorization to interact with the system further, Such as adding new items. After which the focus was changed to doing more trivial flows such as searching, these interactions generally dont require or require limited authentication and authorization.
+For the the API the user login flow is generally the most critical and commonly used way to accessing a system of this nature (Transactional Processing). Focusing on tests that would ensure that a user could first gain access to the system, (register, login and logout) and then would potentially require this users api key/authorization to interact with the system further, such as adding new items. After which the focus was changed to doing more trivial flows such as searching, these interactions generally dont require or require limited authentication and authorization.
 
-## What could be the next steps to your project
-Had I had more time I would like to have setup [Selenoid](https://aerokube.com/selenoid/) for cross-browser testing via docker containers for the selenium UI test automation. While rather easy to configure and run. I ran short on time to develop the required extensibility in the UI project to allow commands to control the configuration and execution of the tests.
+## What could be the next steps to your project?
+If time allowed I would like to have setup [Selenoid](https://aerokube.com/selenoid/) for cross-browser testing via docker containers for the selenium UI test automation. While rather easy to configure and run, time did not allow for me to develop the required extensibility in the UI project. This would allow commands to control the configuration and execution of the tests through different setups.
 
 I also was not able to indentify an easier way to trigger the CICD pipeline using github actions. Spending more time on this may have yeilded better results.
 ## Author
