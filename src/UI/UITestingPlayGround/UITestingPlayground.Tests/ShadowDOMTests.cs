@@ -14,6 +14,7 @@ using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using Xunit;
 using Xunit.Abstractions;
+using OpenQA.Selenium.Remote;
 
 namespace UITestingPlayground.Tests;
 
@@ -22,20 +23,22 @@ public class ShadowDOMTests : IDisposable
 {
     private readonly ITestOutputHelper _testOutputHelper;
     private IWebDriver _webDriver;
-    private const string RequestUrl = "http://www.uitestingplayground.com/shadowdom";
+    private const string RequestUrl = "https://www.uitestingplayground.com/shadowdom";
 
     // Setup
     public ShadowDOMTests(ITestOutputHelper testOutputHelper)
     {
         _testOutputHelper = testOutputHelper;
         ChromeOptions options = new ChromeOptions();
-        options.AddArguments("start-maximized"); // open Browser in maximized mode
-        options.AddArguments("disable-infobars"); // disabling infobars
-        options.AddArguments("--disable-extensions"); // disabling extensions
-        options.AddArguments("--disable-gpu"); // applicable to windows os only
-        options.AddArguments("--disable-dev-shm-usage"); // overcome limited resource problems
-        options.AddArguments("--no-sandbox"); // Bypass OS security model
-        options.AddArguments("--headless");
+        options.AddArgument("start-maximized"); // open Browser in maximized mode
+        options.AddArgument("disable-infobars"); // disabling infobars
+        options.AddArgument("--disable-extensions"); // disabling extensions
+        options.AddArgument("--disable-gpu"); // applicable to windows os only
+        options.AddArgument("--disable-dev-shm-usage"); // overcome limited resource problems
+        options.AddArgument("--no-sandbox"); // Bypass OS security model
+        options.AddArgument("--headless"); // Bypass OS security model
+        options.AddArgument("--ignore-certificate-errors"); // Bypass missing/invalid SSL Certificates
+
         new DriverManager().SetUpDriver(new ChromeConfig());
         _webDriver = new ChromeDriver(options);
     }
@@ -133,19 +136,20 @@ public class ShadowDOMTests : IDisposable
         _webDriver.Navigate().GoToUrl(RequestUrl);
 
         // Act
-        var generateGuidButtonElement = elementActions.GetShadowDOMElement(ShadowDOM.ShadowDOMParent, "button", "Id", ShadowDOM.GuidGenerateButtonElementId);
+        var generateGuidButtonElement = elementActions.GetShadowDOMElement(ShadowDOM.ShadowDOMParent, "button", "id", ShadowDOM.GuidGenerateButtonElementId);
         var guidButtonClicked = elementActions.ButtonClick(generateGuidButtonElement);
-        var inputFieldElement = elementActions.GetShadowDOMElement(ShadowDOM.ShadowDOMParent, "input", "Id", ShadowDOM.GuidInputElemenId);
+        var inputFieldElement = elementActions.GetShadowDOMElement(ShadowDOM.ShadowDOMParent, "input", "id", ShadowDOM.GuidInputElemenId);
         var inputTextFieldValue = inputFieldElement?.GetAttribute("value");
         _testOutputHelper.WriteLine($"InputField GUID = {inputTextFieldValue}");
 
-        var copyGuidButtonElement = elementActions.GetShadowDOMElement(ShadowDOM.ShadowDOMParent, "button", "Id", ShadowDOM.CopyGuidButtonElementId);
-        var copyButtonClicked = elementActions.ButtonClick(generateGuidButtonElement);
+        var copyGuidButtonElement = elementActions.GetShadowDOMElement(ShadowDOM.ShadowDOMParent, "button", "id", ShadowDOM.CopyGuidButtonElementId);
+        var copyButtonClicked = elementActions.ButtonClick(copyGuidButtonElement);
+        _testOutputHelper.WriteLine($"copyButtonClicked = {copyButtonClicked}");
         var clipboardValue = await GetClipboardDataAsync();
         _testOutputHelper.WriteLine($"Clipboard GUID = {clipboardValue}");
 
         // Assert
-        clipboardValue.Should().BeEquivalentTo(inputTextFieldValue, "of a defect in the UITestingPlayground website which I logged here - https://github.com/Inflectra/ui-test-automation-playground/issues/10");
+        clipboardValue.Should().BeEquivalentTo(inputTextFieldValue);
     }
 
     private async Task<string?> GetClipboardDataAsync()
