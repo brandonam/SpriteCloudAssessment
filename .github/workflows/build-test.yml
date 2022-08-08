@@ -24,7 +24,6 @@ jobs:
       - name: Test
         run: dotnet test --no-restore --verbosity normal --logger "html;LogFileName=../../../../../testresults/petstore-test-results.html" --logger "trx;LogFileName=test-results.trx"
         working-directory: src/API/Petstore
-      - name: Add & Commit
         if: always()
         uses: EndBug/add-and-commit@v9.0.1
         with:
@@ -59,7 +58,6 @@ jobs:
       - name: Test
         run: dotnet test --no-restore --verbosity normal --logger "html;LogFileName=../../../../../testresults/uitestingplayground-test-results.html" --logger "trx;LogFileName=test-results.trx"
         working-directory: src/UI/UITestingPlayGround
-      - name: Add & Commit
         if: always()
         uses: EndBug/add-and-commit@v9.0.1
         with:
